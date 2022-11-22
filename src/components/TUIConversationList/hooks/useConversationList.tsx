@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import TIM from '../../../@types/index';
+import TIM, { ChatSDK, Conversation } from 'tim-js-sdk';
 
 function useConversationList(
-  tim: TIM,
+  tim: ChatSDK,
   activeConversationHandler?:(
-    conversationList: Array<TIM>,
-    setConversationList: React.Dispatch<React.SetStateAction<Array<TIM>>>,
+    conversationList: Array<Conversation>,
+    setConversationList: React.Dispatch<React.SetStateAction<Array<Conversation>>>,
   ) => void,
 ) {
-  const [conversationList, setConversationList] = useState([]);
+  const [conversationList, setConversationList] = useState<Array<Conversation>>([]);
   const queryConversation = async (queryType?: string) => {
     if (queryType === 'reload') {
       setConversationList([]);

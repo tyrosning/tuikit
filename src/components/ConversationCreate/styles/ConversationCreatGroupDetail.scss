@@ -5,6 +5,7 @@
   .input-group-text {
     font-weight: 400;
     font-size: 16px;
+    font-family: PingFangSC-Medium;
     line-height: 22px;
     color: #000000;
   }
@@ -12,6 +13,7 @@
     .input-group-name {
       font-weight: 700;
       font-size: 16px;
+      font-family: PingFangSC-Medium;
       line-height: 19px;
       color: #000000;
     }
@@ -23,6 +25,7 @@
   .create-group-illustrate {
     font-weight: 400;
     font-size: 12px;
+    font-family: PingFangSC-Medium;
     line-height: 17px;
     text-align: justify;
     color: rgba(0, 0, 0, 0.4);
@@ -32,6 +35,7 @@
     .create-group-portrait-title {
       font-weight: 600;
       font-size: 14px;
+      font-family: PingFangSC-Medium;
       line-height: 20px;
       color: #000000;
       padding: 20px 0 20px 8px;
@@ -50,6 +54,7 @@
         box-sizing: border-box;
         &-nick {
           font-size: 12px;
+          font-family: PingFangSC-Medium;
           margin-top: 6px;
         }
       }

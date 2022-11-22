@@ -1,10 +1,9 @@
 import React, { PropsWithChildren } from 'react';
-import type { IMessage } from './TUIMessage';
-
+import { Message } from 'tim-js-sdk';
 import { getTimeStamp } from '../untils';
 
 export interface MessageContextProps {
-  message?: IMessage,
+  message?: Message,
 }
 
 function MessageStatustWithContext <T extends MessageContextProps>(

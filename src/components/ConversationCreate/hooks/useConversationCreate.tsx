@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import TIM from '../../../@types';
+import TIM from 'tim-js-sdk';
 import { strChineseFirstPy } from '../static/word';
 import { useProfile } from '../../../hooks';
 
@@ -8,7 +8,7 @@ export const useConversationCreate = (
   conversationList,
   setFriendListResultHandler?:(
     newFriendListResult: object,
-    setFriendListResult: React.Dispatch<React.SetStateAction<{string:Array<TIM>}>>
+    setFriendListResult: React.Dispatch<React.SetStateAction<{string:Array<object>}>>
   ) => void,
 ) => {
   const [friendListSortResult, setFriendListSortResult] = useState({});
@@ -79,7 +79,10 @@ export const useConversationCreate = (
     Object.keys(friendListSortResult).forEach((key) => {
       result[key] = friendListSortResult[key].filter(
         ({ nick, userID }) => {
-          const includes = nick ? nick.includes(searchValue) : userID.includes(searchValue);
+          const tempNick = nick.toLocaleLowerCase();
+          const tempSearchValue = searchValue.toLocaleLowerCase();
+          const includes = tempNick
+            ? tempNick.includes(tempSearchValue) : userID.includes(tempSearchValue);
           isIncludes = isIncludes || includes;
           return includes;
         },

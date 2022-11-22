@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 
 export interface EmptyStateIndicatorProps{
   /** List Type: conversation | message */
-  listType: 'conversation' | 'message' | 'chat';
+  listType?: 'conversation' | 'message' | 'chat';
 }
 
 function UnMemoizedEmptyStateIndicator

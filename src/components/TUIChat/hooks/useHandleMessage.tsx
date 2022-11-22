@@ -1,18 +1,17 @@
 import { Dispatch, useCallback } from 'react';
-import TIM from '../../../@types';
+import { ChatSDK, Conversation, Message } from 'tim-js-sdk';
 import { CONSTANT_DISPATCH_TYPE } from '../../../constants';
-import type { IConversationValue, TUIChatStateContextValue } from '../../../context';
-import { IMessage } from '../../TUIMessage';
+import type { TUIChatStateContextValue } from '../../../context';
 import type { ChatStateReducerAction } from '../TUIChatState';
 
 export interface CreateMessageProps {
-  tim?: TIM,
-  conversation?: IConversationValue,
+  tim?: ChatSDK,
+  conversation?: Conversation,
   state?: TUIChatStateContextValue,
   dispatch?: Dispatch<ChatStateReducerAction>,
 }
 export interface OperateMessageParams {
-  [propName: string]: IMessage,
+  [propName: string]: Message,
 }
 
 export function useHandleMessage<T extends CreateMessageProps>(props:T) {

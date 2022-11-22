@@ -1,11 +1,10 @@
 import React from 'react';
-import { GroupType } from '../components/ConversationCreate';
-import TIM from '../@types';
+import TIM from 'tim-js-sdk';
 import { useTUIConversationContext } from '../context/TUIConversationContext';
 
 export interface CreateGroupConversationParams {
   name: string;
-  type?: GroupType;
+  type?: TIM.TYPES;
   groupID?: string;
   introduction?: string;
   notification?: string;

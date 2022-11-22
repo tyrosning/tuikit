@@ -1,6 +1,6 @@
+import TIM, { Conversation, Group, Message } from 'tim-js-sdk';
 import { decodeText } from './decodeText';
 import constant, { MESSAGE_STATUS } from '../../../constants';
-import TIM from '../../../@types';
 import { JSONStringToParse } from '../../untils';
 
 function t(params:string) {
@@ -9,7 +9,7 @@ function t(params:string) {
 }
 
 // Handling avatars
-export function handleAvatar(item: TIM) {
+export function handleAvatar(item: any) {
   let avatar = '';
   switch (item.type) {
     case TIM.TYPES.CONV_C2C:
@@ -32,7 +32,7 @@ export function handleAvatar(item: TIM) {
 }
 
 // Handling names
-export function handleName(item: TIM) {
+export function handleName(item: Conversation) {
   let name = '';
   switch (item.type) {
     case TIM.TYPES.CONV_C2C:
@@ -48,8 +48,8 @@ export function handleName(item: TIM) {
   return name;
 }
 // Handle whether there is someone@
-export function handleAt(item: TIM) {
-  const List: TIM = [
+export function handleAt(item: any) {
+  const List = [
     `[${t('TUIConversation.有人@我')}]`,
     `[${t('TUIConversation.@所有人')}]`,
     `[${t('TUIConversation.@所有人')}][${t('TUIConversation.有人@我')}]`,
@@ -63,7 +63,7 @@ export function handleAt(item: TIM) {
   return showAtType;
 }
 // Internal display of processing message box
-export function handleShowLastMessage(item: TIM) {
+export function handleShowLastMessage(item: Conversation) {
   const { lastMessage } = item;
   const conversation = item;
   let showNick = '';
@@ -102,15 +102,15 @@ export function handleShowLastMessage(item: TIM) {
 }
 
 // Handling system tip message display
-export function handleTipMessageShowContext(message: TIM) {
-  const options: TIM = {
+export function handleTipMessageShowContext(message: Message) {
+  const options = {
     message,
     text: '',
   };
   let userName = message.nick || message?.payload?.userIDList.join(',');
   if (message?.payload?.memberList?.length > 0) {
     userName = '';
-    message?.payload?.memberList?.map((user: TIM) => {
+    message?.payload?.memberList?.map((user: any) => {
       userName += `${user?.nick || user?.userID},`;
       return user;
     });
@@ -139,7 +139,7 @@ export function handleTipMessageShowContext(message: TIM) {
       options.text = handleTipGrpUpdated(message);
       break;
     case TIM.TYPES.GRP_TIP_MBR_PROFILE_UPDATED:
-      message.payload.memberList.map((member:TIM) => {
+      message.payload.memberList.map((member:any) => {
         if (member.muteTime > 0) {
           options.text = `${t('message.tip.群成员')}：${member.userID}${t('message.tip.被禁言')}`;
         } else {
@@ -155,7 +155,7 @@ export function handleTipMessageShowContext(message: TIM) {
   return options;
 }
 
-function handleTipGrpUpdated(message: TIM) {
+function handleTipGrpUpdated(message: Message) {
   const { payload } = message;
   const { newGroupProfile } = payload;
   const { operatorID } = payload;
@@ -185,16 +185,16 @@ function handleTipGrpUpdated(message: TIM) {
 }
 
 // Parsing and handling text message display
-export function handleTextMessageShowContext(item: TIM) {
-  const options: TIM = {
+export function handleTextMessageShowContext(item: any) {
+  const options = {
     text: decodeText(item.payload),
   };
   return options;
 }
 
 // Parsing and handling face message display
-export function handleFaceMessageShowContext(item: TIM) {
-  const face: TIM = {
+export function handleFaceMessageShowContext(item: any) {
+  const face = {
     message: item,
     name: '',
     url: '',
@@ -208,8 +208,8 @@ export function handleFaceMessageShowContext(item: TIM) {
 }
 
 // Parsing and handling location message display
-export function handleLocationMessageShowContext(item: TIM) {
-  const location: TIM = {
+export function handleLocationMessageShowContext(item: any) {
+  const location: any = {
     lon: '',
     lat: '',
     href: '',
@@ -230,7 +230,7 @@ export function handleLocationMessageShowContext(item: TIM) {
 }
 
 // Parsing and handling image message display
-export function handleImageMessageShowContext(item: TIM) {
+export function handleImageMessageShowContext(item: any) {
   return {
     progress: item?.status === MESSAGE_STATUS.UNSEND && item.progress,
     url: item.payload.imageInfoArray[1].url,
@@ -239,7 +239,7 @@ export function handleImageMessageShowContext(item: TIM) {
 }
 
 // Parsing and handling video message display
-export function handleVideoMessageShowContext(item: TIM) {
+export function handleVideoMessageShowContext(item: any) {
   return {
     progress: item?.status === MESSAGE_STATUS.UNSEND && item?.progress,
     url: item?.payload?.videoUrl,
@@ -249,7 +249,7 @@ export function handleVideoMessageShowContext(item: TIM) {
 }
 
 // Parsing and handling audio message display
-export function handleAudioMessageShowContext(item: TIM) {
+export function handleAudioMessageShowContext(item: any) {
   return {
     progress: item?.status === MESSAGE_STATUS.UNSEND && item.progress,
     url: item.payload.url,
@@ -259,7 +259,7 @@ export function handleAudioMessageShowContext(item: TIM) {
 }
 
 // Parsing and handling file message display
-export function handleFileMessageShowContext(item: TIM) {
+export function handleFileMessageShowContext(item: any) {
   let size = '';
   if (item.payload.fileSize >= 1024 * 1024) {
     size = `${(item.payload.fileSize / (1024 * 1024)).toFixed(2)} Mb`;
@@ -278,14 +278,14 @@ export function handleFileMessageShowContext(item: TIM) {
 }
 
 // Parsing and handling merger message display
-export function handleMergerMessageShowContext(item: TIM) {
+export function handleMergerMessageShowContext(item: Message) {
   return { message: item, ...item.payload };
 }
 
 // Parse audio and video call messages
-export function extractCallingInfoFromMessage(message: TIM) {
-  let callingmessage: TIM = {};
-  let objectData: TIM = {};
+export function extractCallingInfoFromMessage(message: Message) {
+  let callingmessage:any = {};
+  let objectData:any = {};
   try {
     callingmessage = JSONStringToParse(message.payload.data);
   } catch (error) {
@@ -341,7 +341,7 @@ export function extractCallingInfoFromMessage(message: TIM) {
 }
 
 // Parsing and handling custom message display
-export function handleCustomMessageShowContext(item: TIM) {
+export function handleCustomMessageShowContext(item: Message) {
   return {
     message: item,
     custom: extractCallingInfoFromMessage(item) || item?.payload || `[${t('message.custom.custom')}]`,
@@ -349,7 +349,7 @@ export function handleCustomMessageShowContext(item: TIM) {
 }
 
 // Parsing and handling system message display
-export function translateGroupSystemNotice(message: TIM) {
+export function translateGroupSystemNotice(message: Message) {
   const groupName = message.payload.groupProfile.name || message.payload.groupProfile.groupID;
   switch (message.payload.operationType) {
     case 1:
@@ -392,10 +392,10 @@ export function translateGroupSystemNotice(message: TIM) {
 }
 
 // Image loading complete
-export function getImgLoad(container: TIM, className: string, callback: TIM) {
+export function getImgLoad(container: Document, className: string, callback: () => void) {
   const images = container?.querySelectorAll(`.${className}`) || [];
   const promiseList = Array.prototype.slice.call(images).map(
-    (node: any) => new Promise((resolve: any, reject: any) => {
+    (node: HTMLImageElement) => new Promise((resolve, reject) => {
       const loadImg = new Image();
       loadImg.src = node.src;
       loadImg.onload = () => {
@@ -419,7 +419,7 @@ export function isUrl(url: string) {
 }
 
 // Handling custom message options
-export function handleOptions(businessID: string, version: number, other: TIM) {
+export function handleOptions(businessID: string, version: number, other: Message) {
   return {
     businessID,
     version,
@@ -428,10 +428,10 @@ export function handleOptions(businessID: string, version: number, other: TIM) {
 }
 
 // Determine if it is a typing message
-export function isTypingMessage(item: TIM) {
+export function isTypingMessage(item: Message) {
   if (!item) return false;
   try {
-    const { businessID }: TIM = JSONStringToParse(item?.payload?.data);
+    const { businessID } = JSONStringToParse(item?.payload?.data);
     if (businessID === constant.TYPE_TYPING) return true;
   } catch {
     return false;
@@ -441,7 +441,7 @@ export function isTypingMessage(item: TIM) {
 
 export function formatTime(secondTime:number) {
   const time:number = secondTime;
-  let newTime; let hour; let minite; let seconds:TIM;
+  let newTime; let hour; let minite; let seconds;
   if (time >= 3600) {
     hour = parseInt(`${time / 3600}`, 10) < 10 ? `0${parseInt(`${time / 3600}`, 10)}` : parseInt(`${time / 3600}`, 10);
     minite = parseInt(`${(time % 60) / 60}`, 10) < 10 ? `0${parseInt(`${(time % 60) / 60}`, 10)}` : parseInt(`${(time % 60) / 60}`, 10);

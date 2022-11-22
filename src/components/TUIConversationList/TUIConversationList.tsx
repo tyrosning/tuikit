@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
-
-import TIM from '../../@types/index';
+import { Conversation } from 'tim-js-sdk';
 import { useTUIKitContext } from '../../context';
 import useConversationList from './hooks/useConversationList';
 import './index.scss';
@@ -23,8 +22,8 @@ interface Props {
   Preview?: React.ComponentType<ConversationPreviewUIComponentProps>,
   Container?: React.ComponentType<ConversationListContainerProps>,
   onConversationListUpdated?: (
-    setConversationList: React.Dispatch<React.SetStateAction<Array<TIM>>>,
-    event: TIM
+    setConversationList: React.Dispatch<React.SetStateAction<Array<Conversation>>>,
+    event: () => void
   ) => void,
 }
 export function UnMemoTUIConversationList<T extends Props>(props: T):React.ReactElement {
@@ -40,8 +39,8 @@ export function UnMemoTUIConversationList<T extends Props>(props: T):React.React
   const forceUpdate = () => setConversationUpdateCount((count) => count + 1);
 
   const activeConversationHandler = (
-    conversationList: Array<TIM>,
-    setConversationList: React.Dispatch<React.SetStateAction<Array<TIM>>>,
+    conversationList: Array<Conversation>,
+    setConversationList: React.Dispatch<React.SetStateAction<Array<Conversation>>>,
   ) => {
     if (!conversationList.length) {
       return;
@@ -61,7 +60,8 @@ export function UnMemoTUIConversationList<T extends Props>(props: T):React.React
     setSearchValue(e.target?.value);
     if (e.target?.value) {
       const result = conversationList.filter(
-        (item) => (getDisplayTitle(item) as string).includes(e.target?.value),
+        // eslint-disable-next-line max-len
+        (item) => (getDisplayTitle(item) as string).toLocaleLowerCase().includes(e.target?.value.toLocaleLowerCase()),
       );
       setSearchResult(result);
     } else {
@@ -120,7 +120,7 @@ export function UnMemoTUIConversationList<T extends Props>(props: T):React.React
                         result={searchResult}
                       />
                     )
-                    : conversationList.map((item: TIM) => {
+                    : conversationList.map((item) => {
                       const previewProps = {
                         activeConversation: conversation,
                         conversation: item,

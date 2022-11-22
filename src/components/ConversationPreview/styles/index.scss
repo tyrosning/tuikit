@@ -27,6 +27,8 @@ $font-color: #7A7A7A;
       font-weight: 700;
       font-size: 14px;
       line-height: 17px;
+      font-family: PingFangSC-Medium;
+      padding: 1px 0;
     }
 
     .message {
@@ -34,6 +36,12 @@ $font-color: #7A7A7A;
       text-overflow: ellipsis;
       white-space: nowrap;
       color: $font-color;
+      font-family: PingFangSC-Medium;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      padding: 1px 0;
     }
   }
 
@@ -45,18 +53,23 @@ $font-color: #7A7A7A;
     flex-direction: column;
 
     .unread {
-      height: 16px;
+      height: 19px;
+      padding: 1px 0;
     }
 
     .time {
       color: $font-color;
+      font-family: PingFangSC-Medium;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      padding: 1px 0;
     }
 
     .more--hover {
       display: flex;
       justify-content: right;
-      padding-top: 6px;
-      margin-right: 3px;
 
       .icon-more {
         transform: scale(1.5);
@@ -76,6 +89,7 @@ $font-color: #7A7A7A;
 
         .more-handle-item {
           font-size: 16px;
+          font-family: PingFangSC-Medium;
           line-height: 19px;
           padding: 6px 16px;
           cursor: pointer;
@@ -121,7 +135,7 @@ $font-color: #7A7A7A;
       color: #FFFFFF;
       font-size: 11px;
       font-weight: 700;
-      margin-left: auto;
+      margin: 2px 0 2px auto;
     }
   }
 }

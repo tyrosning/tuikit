@@ -1,25 +1,23 @@
 import { useCallback } from 'react';
-import TIM from '../../../@types';
-import { IConversationValue } from '../../../context';
-import { IMessage } from '../../TUIMessageInput';
+import TIM, { ChatSDK, Conversation, Message } from 'tim-js-sdk';
 
 export interface CreateMessageProps {
-  tim?: TIM,
-  conversation?: IConversationValue,
+  tim?: ChatSDK,
+  conversation?: Conversation,
   to?: string,
-  type?: string,
+  type?: TIM.TYPES,
 }
 export interface BasicCreateMessageProps {
   needReadReceipt?: boolean,
-  receiverList?: Array<string>,
-  priority?: string,
+  priority?: TIM.TYPES,
   onProgress?: (num:number) => void,
-  [propName: string]: TIM,
+  cloudCustomData?: string;
+  receiverList?: Array<string>;
 }
 
 export interface CreateTextMessageProps extends BasicCreateMessageProps{
   payload: {
-    text: string,
+    text: string
   }
 }
 
@@ -37,8 +35,8 @@ export interface CreateUploadMessageProps extends BasicCreateMessageProps{
 }
 
 export interface CreateForwardMessageProps extends BasicCreateMessageProps{
-  conversation: IConversationValue,
-  message: IMessage,
+  conversation: Conversation,
+  message: Message,
 }
 
 export function useCreateMessage<T extends CreateMessageProps>(props:T) {

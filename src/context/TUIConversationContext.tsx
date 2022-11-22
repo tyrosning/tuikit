@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import TIM from '../@types';
 import { TUIConversationList } from '../components';
 
 export interface TUIConversationContextValue {
-  createConversation?:(conversationID:string) => Promise<TIM>,
-  deleteConversation?:(conversationID:string) => Promise<TIM>,
+  createConversation?:(conversationID:string) => Promise<any>,
+  deleteConversation?:(conversationID:string) => Promise<any>,
 }
 
 export const TUIConversationContext = React.createContext<TUIConversationContextValue>(undefined);

@@ -1,13 +1,12 @@
 import React, { PropsWithChildren, useContext } from 'react';
-import type TIM from '../@types/index';
-import type { IConversationValue } from './TUIChatStateContext';
+import { ChatSDK, Conversation, Profile } from 'tim-js-sdk';
 
 export interface TUIKitContextValue {
-    tim: TIM,
-    conversation?: IConversationValue,
-    setActiveConversation: (conversation?: TIM) => void,
+    tim: ChatSDK,
+    conversation?: Conversation,
+    setActiveConversation: (conversation?: Conversation) => void,
     customClasses?: unknown,
-    myProfile?: TIM,
+    myProfile?: Profile,
     TUIManageShow?: boolean,
     setTUIManageShow?: React.Dispatch<React.SetStateAction<boolean>>,
     TUIProfileShow?: boolean,

@@ -1,18 +1,18 @@
 import React, { PropsWithChildren, ReactEventHandler, useContext } from 'react';
-import { IMessage } from '../components';
+import { Message } from 'tim-js-sdk';
 
 export interface TUIMessageContextValue {
-  message?: IMessage,
+  message?: Message,
   handleDelete?: ReactEventHandler,
-  CustemElement?: React.ComponentType<{message: IMessage}>,
-  TextElement?: React.ComponentType<{message: IMessage}>,
-  ImageElement?: React.ComponentType<{message: IMessage}>,
-  VideoElement?: React.ComponentType<{message: IMessage}>,
-  AudioElement?: React.ComponentType<{message: IMessage}>,
-  FileElement?: React.ComponentType<{message: IMessage}>,
-  MergerElement?: React.ComponentType<{message: IMessage}>,
-  LocationElement?: React.ComponentType<{message: IMessage}>,
-  FaceElement?: React.ComponentType<{message: IMessage}>,
+  CustemElement?: React.ComponentType<{message: Message}>,
+  TextElement?: React.ComponentType<{message: Message}>,
+  ImageElement?: React.ComponentType<{message: Message}>,
+  VideoElement?: React.ComponentType<{message: Message}>,
+  AudioElement?: React.ComponentType<{message: Message}>,
+  FileElement?: React.ComponentType<{message: Message}>,
+  MergerElement?: React.ComponentType<{message: Message}>,
+  LocationElement?: React.ComponentType<{message: Message}>,
+  FaceElement?: React.ComponentType<{message: Message}>,
 }
 
 export const TUIMessageContext = React.createContext<TUIMessageContextValue>(undefined);

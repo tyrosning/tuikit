@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import TIM from '../../@types/index';
-import type { IMessage } from './TUIMessage';
+import TIM, { Message } from 'tim-js-sdk';
 
 import { MessageAudio } from './MessageAudio';
 import { MessageCustom } from './MessageCustom';
@@ -29,7 +28,7 @@ const components = {
 };
 
 export interface MessageContextProps {
-  message?: IMessage,
+  message?: Message,
 }
 
 function MessageContextWithContext <T extends MessageContextProps>(

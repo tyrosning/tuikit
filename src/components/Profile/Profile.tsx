@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles/index.scss';
+import { Profile as TProfile } from 'tim-js-sdk';
 import { Avatar, defaultUserAvatar } from '../Avatar';
 import { Icon, IconTypes } from '../Icon';
-import TIM from '../../@types/index';
 
 export interface ProfileProps {
-  profile?: TIM,
+  profile?: TProfile,
   className?: string,
   handleAvatar?: () => void,
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Conversation } from 'tim-js-sdk';
 import { TUIKitContextValue, useTUIKitContext } from '../../context';
 import { ConversationPreviewContent } from './ConversationPreviewContent';
-import type TIM from '../../@types/index';
-import { AvatarProps } from '../Avatar/index';
+import { AvatarProps } from '../Avatar';
 
 import {
   getDisplayImage, getDisplayMessage, getDisplayTitle, getDisplayTime,
@@ -23,8 +23,8 @@ export interface ConversationPreviewUIComponentProps extends ConversationPreview
   unread?: number,
 }
 export interface ConversationPreviewProps {
-  conversation: TIM,
-  activeConversation?: TIM,
+  conversation: Conversation,
+  activeConversation?: Conversation,
   Preview?: React.ComponentType<ConversationPreviewUIComponentProps>,
   Avatar?: React.ComponentType<AvatarProps>
   setActiveConversation?: TUIKitContextValue['setActiveConversation'],

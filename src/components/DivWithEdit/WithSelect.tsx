@@ -1,12 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import TIM from '../../@types';
 import { Icon, IconTypes } from '../Icon';
 
 import './styles/index.scss';
 import { WithEditProps } from './WithText';
 
 interface WithSelectProps extends WithEditProps {
-  list?: Array<TIM>,
+  list?: Array<any>,
 }
 
 export function WithSelect<T extends WithSelectProps>(props:PropsWithChildren<T>) {

@@ -1,8 +1,7 @@
 import React, { PropsWithChildren, useMemo } from 'react';
-import TIM from '../../../@types';
 
 interface PluginsElementProps {
-  plugins?: Array<TIM>,
+  plugins?: Array<any>,
   showNumber?: number,
 }
 

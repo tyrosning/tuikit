@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, useRef, useState } from 'react';
+import TIM from 'tim-js-sdk';
 import './styles/index.scss';
 
 import { Plugins, PluginsProps } from '../Plugins';
@@ -6,7 +7,6 @@ import { Icon, IconTypes } from '../Icon';
 import { useTUIChatStateContext, useTUIMessageContext } from '../../context';
 import { useMessagePluginElement, useMessageHandler } from './hooks';
 import { MESSAGE_FLOW, MESSAGE_STATUS } from '../../constants';
-import TIM from '../../@types';
 
 export function MessagePlugins <T extends PluginsProps>(
   props:PropsWithChildren<T>,

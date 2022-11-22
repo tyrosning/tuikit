@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import TIM from '../../../@types/index';
+import { ChatSDK, Profile } from 'tim-js-sdk';
 
-export function useProfile(tim: TIM, profileHandler?: (
-  profile: TIM,
-  setProfile?: React.Dispatch<React.SetStateAction<TIM>>,
+export function useProfile(tim: ChatSDK, profileHandler?: (
+  profile: Profile,
+  setProfile?: React.Dispatch<React.SetStateAction<Profile>>,
 ) => void) {
-  const [myProfile, setMyProfile] = useState<TIM>();
+  const [myProfile, setMyProfile] = useState<Profile>();
 
   const getProfile = async (userIDList: Array<string>) => {
     const res = await tim?.getUserProfile({

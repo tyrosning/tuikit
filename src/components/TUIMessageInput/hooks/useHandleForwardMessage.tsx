@@ -1,12 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
-import TIM from '../../../@types';
+import { useEffect, useState } from 'react';
+import TIM, { Conversation, Message } from 'tim-js-sdk';
 import { MESSAGE_OPERATE } from '../../../constants';
 import {
-  IConversationValue, useTUIChatActionContext, useTUIChatStateContext, useTUIKitContext,
+  useTUIChatActionContext, useTUIChatStateContext, useTUIKitContext,
 } from '../../../context';
-import { IMessage } from '../../TUIMessage';
 
-export function useHandleForwardMessage(msg?:IMessage) {
+export function useHandleForwardMessage(msg?:Message) {
   const {
     operateData,
   } = useTUIChatStateContext('TUIMessageInputDefault');
@@ -17,8 +16,8 @@ export function useHandleForwardMessage(msg?:IMessage) {
 
   const message = msg || operateData[MESSAGE_OPERATE.FORWARD];
 
-  const sendForwardMessage = (list:Array<IConversationValue>) => {
-    list.map((item:IConversationValue) => {
+  const sendForwardMessage = (list:Array<Conversation>) => {
+    list.map((item:Conversation) => {
       const forwardMessage = createForwardMessage({ conversation: item, message });
       sendMessage(forwardMessage);
       return item;

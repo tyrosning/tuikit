@@ -48,7 +48,7 @@ export function TUIManage() {
   <div className="tui-manage">
     <div className="tui-manage-title">
       <Icon type={IconTypes.CANCEL} width={16} height={16} onClick={close} />
-      <span>Conversation information</span>
+      <span>Conversation Information</span>
     </div>
     <div className="tui-manage-container">
       <div className="tui-manage-info">
@@ -70,7 +70,7 @@ export function TUIManage() {
       </div>
       <div className="tui-manage-handle">
         <div className="manage-handle-box">
-          <div className="manage-handle-title">Pin chat</div>
+          <div className="manage-handle-title">Pin</div>
           <Switch
             onChange={pinChatChange}
             checked={isPinned}

@@ -1,4 +1,4 @@
-import TIM from '../../../@types';
+import TIM, { Message } from 'tim-js-sdk';
 import {
   handleAudioMessageShowContext,
   handleCustomMessageShowContext,
@@ -14,7 +14,7 @@ import {
 } from '../utils';
 
 interface messageContextParams {
-  message?: TIM,
+  message?: Message,
 }
 
 export const useMessageContextHandler = <T extends messageContextParams>(params:T) => {

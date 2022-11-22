@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import TIM from '../../@types';
 import { useTUIMessageInputContext } from '../../context/TUIMessageInputContext';
 import { Icon, IconTypes } from '../Icon';
 import { Popup } from '../Popup';
 import {
-  emojiUrl, emojiName, emojiMap, bigEmojiList, faceUrl,
+  emojiUrl, emojiName, emojiMap, bigEmojiList, faceUrl, IBigEmojiListItem,
 } from '../TUIMessage/utils/emojiMap';
 
 import type { EmojiData } from './hooks';
@@ -45,23 +44,6 @@ export function EmojiPicker():React.ReactElement {
         show={show}
         close={handleShow}
       >
-        <ul className="face-tab">
-          <li className="face-tab-item">
-            <Icon
-              width={20}
-              height={20}
-              type={IconTypes.EMOJI}
-              onClick={(e) => { setIndex(0); }}
-            />
-          </li>
-          {
-            bigEmojiList.map((item:TIM) => (
-              <li role="menuitem" className="face-tab-item" key={item.icon} onClick={(e) => { setIndex(item.icon); }}>
-                <img src={`${faceUrl + item.list[0]}@2x.png`} alt="" />
-              </li>
-            ))
-          }
-        </ul>
         <ul className="face-list">
           {
             index === 0 && emojiName.map((item:string, emojiIndex:number) => {
@@ -82,27 +64,6 @@ export function EmojiPicker():React.ReactElement {
               );
             })
           }
-          {
-            index !== 0 && bigEmojiList[index - 1]?.list?.map((item:string, faceIndex:number) => {
-              const key = item + faceIndex;
-              return (
-                <li
-                  role="menuitem"
-                  className="face-list-item"
-                  key={key}
-                  onClick={handleSelectEmoji}
-                >
-                  <img
-                    className="face-img"
-                    src={`${`${faceUrl + item}@2x.png`}`}
-                    alt=""
-                    data-data={item}
-                  />
-                </li>
-              );
-            })
-          }
-
         </ul>
       </Popup>
     </div>

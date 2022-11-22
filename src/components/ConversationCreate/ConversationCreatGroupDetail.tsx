@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type TIM from '../../@types';
+import { Conversation, Profile } from 'tim-js-sdk';
 import { Input } from '../Input';
 import './styles/ConversationCreatGroupDetail.scss';
 import { Icon, IconTypes } from '../Icon';
@@ -8,7 +8,7 @@ import {
   defaultGroupAvatarWork,
   defaultGroupAvatarAVChatRoom,
   defaultGroupAvatarMeeting,
-  defaultGroupAvatarPublic,
+  defaultGroupAvatarPublic, defaultUserAvatar,
 } from '../Avatar';
 import { PageStateTypes } from './ConversationCreate';
 import { ConversationGroupTypeInfo, GroupType, typeInfoList } from './ConversationGroupTypeInfo';
@@ -16,10 +16,10 @@ import { useTUIKitContext } from '../../context';
 import { CreateGroupConversationParams } from '../../hooks';
 
 export interface ConversationCreatGroupDetailProps {
-  profileList: Array<TIM>,
+  profileList: Array<Profile>,
   pageState: PageStateTypes,
   setPageState: React.Dispatch<React.SetStateAction<PageStateTypes>>,
-  createConversation: (params: string | CreateGroupConversationParams) => Promise<object>,
+  createConversation: (params: string | CreateGroupConversationParams) => Promise<Conversation>,
   setConversationCreated: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
@@ -134,7 +134,7 @@ export function ConversationCreatGroupDetail(props: ConversationCreatGroupDetail
           <div className="create-group-portrait-info-container">
             {profileList.map(({ avatar, userID, nick }) => (
               <div className="create-group-portrait-info" key={userID}>
-                <Avatar shape="square" size={50} image={avatar} />
+                <Avatar shape="square" size={50} image={avatar || defaultUserAvatar} />
                 <div className="create-group-portrait-info-nick">{nick}</div>
               </div>
             ))}

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useCallback } from 'react';
-import TIM from '../../@types';
+import TIM from 'tim-js-sdk';
 import { MESSAGE_FLOW, MESSAGE_OPERATE } from '../../constants';
 import { useTUIChatActionContext } from '../../context';
 import type { MessageContextProps } from './MessageText';

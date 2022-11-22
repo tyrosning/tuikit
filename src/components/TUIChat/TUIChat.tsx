@@ -1,12 +1,11 @@
 import React, {
   PropsWithChildren, useEffect, useMemo, useReducer, useRef, useState,
 } from 'react';
-import TIM from '../../@types';
+import { ChatSDK, Conversation, Message } from 'tim-js-sdk';
 import { useTUIKitContext } from '../../context/TUIKitContext';
 import { TUIChatStateContextProvider } from '../../context/TUIChatStateContext';
 import { TUIChatActionProvider } from '../../context/TUIChatActionContext';
-import { ComponentProvider } from '../../context/ComponentContext';
-import type { IConversationValue } from '../../context/TUIChatStateContext';
+import { ComponentProvider, UnknowPorps } from '../../context/ComponentContext';
 import type { TUIChatActionContextValue } from '../../context/TUIChatActionContext';
 import type { ComponentContextValue } from '../../context/ComponentContext';
 import useCreateTUIChatStateContext from './hooks/useCreateTUIChatStateContext';
@@ -14,7 +13,6 @@ import useCreateTUIChatStateContext from './hooks/useCreateTUIChatStateContext';
 import type { TUIChatHeaderDefaultProps } from '../TUIChatHeader/TUIChatHeaderDefault';
 
 import {
-  IMessage,
   TUIMessageProps,
   TUIMessage as TUIMessageDefault,
 } from '../TUIMessage';
@@ -37,26 +35,26 @@ import { Toast } from '../Toast';
 
 interface TUIChatProps {
   className?: string,
-  conversation?: IConversationValue,
+  conversation?: Conversation,
   EmptyPlaceholder?: React.ReactElement,
   TUIMessage?: React.ComponentType<TUIMessageProps>,
   TUIChatHeader?: React.ComponentType<TUIChatHeaderDefaultProps>,
   MessageContext?: React.ComponentType<MessageContextProps>,
-  TUIMessageInput?: React.ComponentType<TIM>,
-  InputPlugins?: React.ComponentType<TIM>,
-  InputQuote?: React.ComponentType<TIM>,
-  MessagePlugins?: React.ComponentType<TIM>,
+  TUIMessageInput?: React.ComponentType<UnknowPorps>,
+  InputPlugins?: React.ComponentType<UnknowPorps>,
+  InputQuote?: React.ComponentType<UnknowPorps>,
+  MessagePlugins?: React.ComponentType<UnknowPorps>,
   onMessageRecevied?: (
-    updateMessage: (event?: TIM) => void,
-    event: TIM,
+    updateMessage: (event?: Array<Message>) => void,
+    event: any,
   ) => void,
-  sendMessage?: (message:IMessage) => Promise<TIM>,
-  revokeMessage?: (message:IMessage) => Promise<TIM>,
-  [propName: string]: TIM,
+  sendMessage?: (message:Message) => Promise<Message>,
+  revokeMessage?: (message:Message) => Promise<Message>,
+  [propName: string]: any,
 }
 
 interface TUIChatInnerProps extends TUIChatProps {
-  tim?: TIM,
+  tim?: ChatSDK,
   key?: string;
 }
 
@@ -143,7 +141,7 @@ function TUIChatInner <T extends TUIChatInnerProps>(
     state, dispatch,
   });
 
-  const sendMessage = async (message: IMessage) => {
+  const sendMessage = async (message: Message) => {
     updateMessage([message]);
     try {
       if (propsSendMessage) {

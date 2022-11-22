@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import TIM from '../../../@types';
+import TIM, { Message } from 'tim-js-sdk';
 import { MESSAGE_OPERATE } from '../../../constants';
 import { useTUIChatStateContext } from '../../../context';
-import { IMessage } from '../../TUIMessage';
 
 const quoteConfigType = {
   [TIM.TYPES.MSG_TEXT]: 1,
@@ -23,14 +22,14 @@ const quoteConfigForShow = {
   [TIM.TYPES.MSG_FACE]: '[face]',
 };
 
-export function useHandleQuoteMessage(msg?:IMessage) {
+export function useHandleQuoteMessage(msg?:Message) {
   const {
     operateData,
   } = useTUIChatStateContext('TUIMessageInputDefault');
 
   const [cloudCustomData, setCloudCustomData] = useState({ messageReply: null });
 
-  const handleQuoteMessage = (message: IMessage) => {
+  const handleQuoteMessage = (message: Message) => {
     const messageType = quoteConfigType[message?.type];
     const messageAbstract = message?.type === TIM.TYPES.MSG_TEXT
       ? message?.payload?.text

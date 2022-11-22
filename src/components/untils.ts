@@ -6,7 +6,7 @@ import {
   isToday,
   isYesterday,
 } from 'date-fns';
-import TIM from '../@types';
+import TIM from 'tim-js-sdk';
 import { defaultGroupAvatarWork, defaultUserAvatar } from './Avatar';
 
 // Determine if it is a JSON string

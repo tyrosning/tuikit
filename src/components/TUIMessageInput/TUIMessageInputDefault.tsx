@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MESSAGE_OPERATE } from '../../constants';
 import { useTUIChatStateContext } from '../../context';
 
@@ -14,8 +14,8 @@ export function TUIMessageInputDefault():React.ReactElement {
     textareaRef,
     focus,
     setText,
+    setCursorPos,
   } = useTUIMessageInputContext('TUIMessageInputDefault');
-
   const {
     operateData,
   } = useTUIChatStateContext('TUIMessageInputDefault');
@@ -45,6 +45,10 @@ export function TUIMessageInputDefault():React.ReactElement {
     setFocused(true);
   };
   const handleBlur = (e) => {
+    setCursorPos({
+      start: e.target.selectionStart,
+      end: e.target.selectionEnd,
+    });
     setFocused(false);
   };
 

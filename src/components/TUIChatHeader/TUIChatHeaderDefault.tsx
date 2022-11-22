@@ -1,7 +1,5 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
-
-import TIM from '../../@types/index';
-import { IConversationValue } from '../../context/TUIChatStateContext';
+import TIM, { Conversation, Group, Profile } from 'tim-js-sdk';
 import { Avatar } from '../Avatar';
 import { handleDisplayAvatar } from '../untils';
 
@@ -13,7 +11,7 @@ export interface TUIChatHeaderDefaultProps {
   title?: string,
   avatar?: string,
   isOnline?: boolean,
-  conversation?: IConversationValue,
+  conversation?: Conversation,
   pluginComponentList?: Array<React.ComponentType>,
 }
 
@@ -49,7 +47,7 @@ function TUIChatHeaderDefaultWithContext <T extends TUIChatHeaderDefaultProps>(
     }
   }, [conversation]);
 
-  const handleC2C = (userProfile: TIM) => {
+  const handleC2C = (userProfile: Profile) => {
     if (!title) {
       setTitle(userProfile?.nick || userProfile?.userID);
     }
@@ -58,7 +56,7 @@ function TUIChatHeaderDefaultWithContext <T extends TUIChatHeaderDefaultProps>(
     }
   };
 
-  const handleGroup = (groupProfile: TIM) => {
+  const handleGroup = (groupProfile: Group) => {
     if (!title) {
       setTitle(groupProfile?.name || groupProfile?.groupID);
     }

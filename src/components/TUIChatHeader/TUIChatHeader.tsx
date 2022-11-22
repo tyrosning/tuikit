@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-
-import { IConversationValue, useTUIChatStateContext } from '../../context/TUIChatStateContext';
+import { Conversation } from 'tim-js-sdk';
+import { useTUIChatStateContext } from '../../context/TUIChatStateContext';
 import type { TUIChatHeaderDefaultProps } from './TUIChatHeaderDefault';
 import { TUIChatHeaderDefault } from './TUIChatHeaderDefault';
 
@@ -10,7 +10,7 @@ import { useComponentContext } from '../../context';
 interface TUIChatHeaderProps {
   title?: string,
   TUIChatHeader?: React.ComponentType<TUIChatHeaderDefaultProps>,
-  conversation?: IConversationValue,
+  conversation?: Conversation,
 }
 
 function UnMemoizedTUIChatHeader<T extends TUIChatHeaderProps>(

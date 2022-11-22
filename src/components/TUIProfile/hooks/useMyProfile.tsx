@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import TIM from '../../../@types';
+import TIM from 'tim-js-sdk';
 import { useTUIKitContext } from '../../../context';
 
 export interface ProfileParams {
@@ -15,7 +15,7 @@ export interface ProfileParams {
   adminForbidType?: string,
   level?: number,
   role?: number,
-  profileCustomField?: Array<TIM>,
+  profileCustomField?: Array<any>,
 }
 
 export function useMyProfile() {
@@ -31,7 +31,7 @@ export function useMyProfile() {
     }
   }, [tim]);
 
-  const updateMyProfile = useCallback(async (options:ProfileParams) => {
+  const updateMyProfile = useCallback(async (options) => {
     const res = await tim?.updateMyProfile(options);
     const userInfo = { ...myProfile };
     const keys = Object.keys(res.data);

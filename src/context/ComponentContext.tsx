@@ -1,17 +1,21 @@
 import React, { PropsWithChildren, useContext } from 'react';
-import TIM from '../@types';
 import { TUIChatHeaderDefaultProps } from '../components';
 import type{ EmptyStateIndicatorProps } from '../components/EmptyStateIndicator';
+import { MessageContextProps, TUIMessageProps } from '../components/TUIMessage';
+
+export interface UnknowPorps {
+  [propsName: string]: any
+}
 
 export interface ComponentContextValue {
-  TUIMessage?: React.ComponentType<TIM>,
+  TUIMessage?: React.ComponentType<TUIMessageProps>,
   TUIChatHeader?: React.ComponentType<TUIChatHeaderDefaultProps>,
   EmptyStateIndicator?: React.ComponentType<EmptyStateIndicatorProps>,
-  TUIMessageInput?: React.ComponentType,
-  MessageContext?: React.ComponentType<TIM>,
-  InputPlugins?: React.ComponentType<TIM>,
-  MessagePlugins?: React.ComponentType<TIM>,
-  InputQuote?: React.ComponentType<TIM>,
+  TUIMessageInput?: React.ComponentType<UnknowPorps>,
+  MessageContext?: React.ComponentType<MessageContextProps>,
+  InputPlugins?: React.ComponentType<UnknowPorps>,
+  MessagePlugins?: React.ComponentType<UnknowPorps>,
+  InputQuote?: React.ComponentType<UnknowPorps>,
 }
 
 export const ComponentContext = React.createContext<ComponentContextValue | undefined>(undefined);

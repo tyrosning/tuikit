@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import TIM from '../../../@types';
 
 interface UploadProps {
   type?: string,
@@ -22,7 +21,7 @@ export function useUploadElement<
       const options = {
         type: files[0].type,
       };
-      const file = new File(files as TIM, files[0].name, options);
+      const file = new File(files as any, files[0].name, options);
       onChange(file);
     }
     e.target.value = '';

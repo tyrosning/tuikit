@@ -2,11 +2,11 @@ import {
   format, isToday, isYesterday, formatDistance, isThisYear, isThisWeek,
 } from 'date-fns';
 import React from 'react';
-import TIM from '../../@types';
-import { defaultGroupAvatarWork } from '../Avatar';
+import TIM, { Conversation, Group, Profile } from 'tim-js-sdk';
+import { defaultGroupAvatarWork, defaultUserAvatar } from '../Avatar';
 
 export const getDisplayTitle = (
-  conversation: TIM,
+  conversation: Conversation,
   searchValue?: string,
   highlightColor = '#147AFF',
 ): string | React.ReactElement => {
@@ -26,25 +26,26 @@ export const getDisplayTitle = (
       title = '';
   }
   const handleTitle = (str:string) => {
-    const pos = str.indexOf(searchValue);
+    const tempStr = str.toLocaleLowerCase();
+    const pos = tempStr.indexOf(searchValue.toLocaleLowerCase());
     return (
       <div>
         <span>{str.slice(0, pos)}</span>
-        <span style={{ color: highlightColor }}>{searchValue}</span>
+        <span style={{ color: highlightColor }}>{str.slice(pos, pos + searchValue.length)}</span>
         <span>{str.slice(pos + searchValue.length)}</span>
       </div>
     );
   };
   return !searchValue ? title : handleTitle(title);
 };
-export const getDisplayImage = (conversation: TIM) => {
+export const getDisplayImage = (conversation: Conversation) => {
   const { type } = conversation;
   const { avatar } = getMessageProfile(conversation);
   let displayImage = avatar;
   if (!avatar) {
     switch (type) {
       case TIM.TYPES.CONV_C2C:
-        displayImage = '';
+        displayImage = defaultUserAvatar;
         break;
       case TIM.TYPES.CONV_GROUP:
         displayImage = defaultGroupAvatarWork;
@@ -55,7 +56,7 @@ export const getDisplayImage = (conversation: TIM) => {
   }
   return displayImage;
 };
-export const getDisplayMessage = (conversation:TIM, myProfile) => {
+export const getDisplayMessage = (conversation:Conversation, myProfile:Profile) => {
   const { lastMessage, type } = conversation;
   const {
     fromAccount, nick, nameCard, isRevoked,
@@ -82,7 +83,8 @@ export const getDisplayMessage = (conversation:TIM, myProfile) => {
     </div>
   );
 };
-export const getMessageProfile = (conversation: TIM) => {
+interface TProfile extends Profile, Group {}
+export const getMessageProfile = (conversation: Conversation):TProfile => {
   if (!conversation) return null;
   let result = {};
   const { type, groupProfile, userProfile } = conversation;
@@ -96,9 +98,9 @@ export const getMessageProfile = (conversation: TIM) => {
     case TIM.TYPES.CONV_SYSTEM:
     default:
   }
-  return result as TIM;
+  return result as TProfile;
 };
-export const getDisplayTime = (conversation: TIM) => {
+export const getDisplayTime = (conversation: Conversation) => {
   const { lastMessage } = conversation;
   return getTimeStamp(lastMessage.lastTime * 1000);
 };

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import TIM from '../../../@types';
+import React from 'react';
+import { Message } from 'tim-js-sdk';
 
 interface EnrichedMessageListProps {
-  messageList: Array<TIM>;
+  messageList: Array<Message>;
 }
 
 function useEnrichedMessageList(props:EnrichedMessageListProps) {

@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
-import TIM from '../../../@types';
 
-export const useCreateMessageInputContext = (value:TIM) => {
+export const useCreateMessageInputContext = (value:any) => {
   const {
     textareaRef,
     handleChange,

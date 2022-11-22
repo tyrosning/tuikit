@@ -1,13 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import TIM from '../../../@types/index';
-import { IConversationValue } from '../../../context';
+import { ChatSDK, Conversation, Profile } from 'tim-js-sdk';
 
 export interface UseChatParams{
-  tim: TIM
+  tim: ChatSDK
 }
 export const useTUIKit = ({ tim }:UseChatParams) => {
-  const [conversation, setConversation] = useState<IConversationValue>();
-  const [myProfile, setMyProfile] = useState<IConversationValue>();
+  const [conversation, setConversation] = useState<Conversation>();
+  const [myProfile, setMyProfile] = useState<Profile>();
   const [TUIManageShow, setTUIManageShow] = useState<boolean>(false);
   const [TUIProfileShow, setTUIProfileShow] = useState<boolean>(false);
   useEffect(() => {
@@ -18,7 +17,7 @@ export const useTUIKit = ({ tim }:UseChatParams) => {
     getMyProfile();
   }, [tim]);
   const setActiveConversation = useCallback(
-    (activeConversation?: IConversationValue) => {
+    (activeConversation?: Conversation) => {
       if (activeConversation) {
         tim?.setMessageRead({ conversationID: activeConversation.conversationID });
       }

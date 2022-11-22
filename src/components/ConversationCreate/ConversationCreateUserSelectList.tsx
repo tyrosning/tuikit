@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
+import { Conversation } from 'tim-js-sdk';
 import { Input } from '../Input';
 import { Icon, IconTypes } from '../Icon';
 import { ConversationCreateSelectView, ConversationCreateSelectViewProps } from './ConversationCreateSelectView';
-import { Avatar } from '../Avatar';
+import { Avatar, defaultUserAvatar } from '../Avatar';
 import { useConversationCreate } from './hooks/useConversationCreate';
 import { useTUIKitContext } from '../../context';
-import TIM from '../../@types';
 import { PageStateTypes } from './ConversationCreate';
 import { useConversation } from '../../hooks';
 import { Toast } from '../Toast';
@@ -15,7 +15,7 @@ export interface ConversationCreateUserSelectListProps extends ConversationCreat
   setIsCreateGroup: React.Dispatch<React.SetStateAction<boolean>>,
   setConversationCreated: React.Dispatch<React.SetStateAction<boolean>>,
   className: string,
-  conversationList: Array<TIM>,
+  conversationList: Array<Conversation>,
   setPageState: React.Dispatch<React.SetStateAction<PageStateTypes>>,
 }
 export function ConversationCreateUserSelectList(props: ConversationCreateUserSelectListProps) {
@@ -124,7 +124,7 @@ export function ConversationCreateUserSelectList(props: ConversationCreateUserSe
                           createC2CConversation(profile);
                         }}
                       >
-                        <Avatar size={30} image={avatar} />
+                        <Avatar size={30} image={avatar || defaultUserAvatar} />
                         <div className="tui-user-name">{nick || `${userID}` }</div>
                         {isCreateGroup && (
                           <input

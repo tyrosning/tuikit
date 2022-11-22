@@ -4,6 +4,7 @@
   cursor: pointer;
   font-family: SF Pro Text;
   font-size: 14px;
+  font-family: PingFangSC-Medium;
   font-style: normal;
   font-weight: 500;
   line-height: 17px;
@@ -64,8 +65,9 @@
   .time {
     width: max-content;
     font-weight: 400;
-    padding: 5px 0 0 5px;
+    padding: 5px 0 0 10px;
     font-size: 12px;
+    font-family: PingFangSC-Medium;
     line-height: 14px;
     text-align: right;
     color: #7A7A7A;
@@ -87,17 +89,24 @@
 .message-text {
   display: flex;
   &-content {
-    display: flex;
-    justify-content: flex-end;
-    .text-box {
-      word-break: break-all;
+    display: inline;
+    word-break: break-word;
+    font-family: PingFangSC-Regular;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    .message-status {
+      display: inline-flex;
+      float: right;
+      clear: right;
     }
   }
 }
 
 .message-text, 
 .message-tip {
-  font-family: 'SF Pro Text';
+  font-family: PingFangSC-Regular;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -174,6 +183,7 @@
     padding-top: 10px;
     font-weight: 400;
     font-size: 12px;
+    font-family: PingFangSC-Medium;
     line-height: 14px;
     color: #7A7A7A;
   }
@@ -229,7 +239,7 @@
       left: 0;
     }
     .title {
-      font-family: 'SF Pro Text';
+      font-family: PingFangSC-Medium;
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -271,6 +281,7 @@
     content: "!";
     color: #FFFFFF;
     font-size: 12px;
+    font-family: PingFangSC-Medium;
   }
 }
 
@@ -352,6 +363,7 @@
     align-items: center;
     font-weight: 500;
     font-size: 12.8px;
+    font-family: PingFangSC-Medium;
     line-height: 15px;
     &:hover {
       background: rgba(0,110,255,.1);
@@ -369,6 +381,11 @@
   a {
     color: #679ce1;
     text-decoration: none;
+    font-family: PingFangSC-Regular;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 

@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
+import { Message } from 'tim-js-sdk';
 import { MESSAGE_FLOW, MESSAGE_OPERATE } from '../../../constants';
 import { useTUIChatActionContext, useTUIKitContext } from '../../../context';
 import { Toast } from '../../Toast';
-import { IMessage } from '../TUIMessage';
 
 interface MessageHandlerProps {
   handleError?: (error) => void,
-  message?: IMessage,
+  message?: Message,
 }
 
 export const useMessageHandler = (props?: MessageHandlerProps) => {

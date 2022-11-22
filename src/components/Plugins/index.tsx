@@ -2,7 +2,6 @@ import React, {
   forwardRef,
   PropsWithChildren, useImperativeHandle, useLayoutEffect, useRef, useState,
 } from 'react';
-import TIM from '../../@types';
 import { Icon, IconTypes } from '../Icon';
 import { Popup } from '../Popup';
 import { usePluginsElement } from './hooks';
@@ -10,13 +9,13 @@ import { usePluginsElement } from './hooks';
 import './styles/index.scss';
 
 export interface PluginsProps {
-  plugins?: Array<TIM>,
+  plugins?: Array<any>,
   showNumber?: number,
-  MoreIcon?: TIM,
+  MoreIcon?: any,
   className?: string,
   customClass?: string,
-  root?: TIM,
-  handleVisible?: (isVisible:TIM) => void,
+  root?: any,
+  handleVisible?: (isVisible:any) => void,
   showMore?: boolean,
 }
 

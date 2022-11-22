@@ -1,5 +1,12 @@
+export interface IEmojiMap {
+  [key:string]:string
+}
+export interface IBigEmojiListItem {
+  icon: number,
+  list: Array<string>,
+}
 export const emojiUrl = 'https://web.sdk.qcloud.com/im/assets/emoji/';
-export const emojiMap:any = {
+export const emojiMap:IEmojiMap = {
   '[NO]': 'emoji_0@2x.png',
   '[OK]': 'emoji_1@2x.png',
   '[下雨]': 'emoji_2@2x.png',
@@ -285,7 +292,7 @@ export const emojiName:Array<string> = [
 ];
 export const faceUrl = 'https://web.sdk.qcloud.com/im/assets/face-elem/';
 
-export const bigEmojiList:Array<any> = [
+export const bigEmojiList:Array<IBigEmojiListItem> = [
   {
     icon: 1,
     list: ['yz00', 'yz01', 'yz02', 'yz03', 'yz04', 'yz05', 'yz06', 'yz07', 'yz08',

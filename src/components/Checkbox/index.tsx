@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import TIM from '../../@types';
 import { Icon, IconTypes } from '../Icon';
 
 import './styles/index.scss';
 
 interface onChangeParams {
   checked?: boolean,
-  value?: TIM,
+  value?: any,
 }
 
 interface SelectProps {
   checked?: boolean,
   className?: string,
   onChange?: (data?: onChangeParams) => void,
-  value?: TIM,
+  value?: any,
   id?: string,
 }
 

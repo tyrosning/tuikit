@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
-import TIM from '../../../@types/index';
+import TIM, { Conversation } from 'tim-js-sdk';
 import { useTUIKitContext } from '../../../context';
 
 export const useConversationUpdate = (
-  setConversationList?: React.Dispatch<React.SetStateAction<Array<TIM>>>,
+  setConversationList?: React.Dispatch<React.SetStateAction<Array<Conversation>>>,
   customHandler?: (
-    setConversationList: React.Dispatch<React.SetStateAction<Array<TIM>>>,
-    event: TIM
+    setConversationList: React.Dispatch<React.SetStateAction<Array<Conversation>>>,
+    event: any
   ) => void,
   forceUpdate?: () => void,
 ) => {
   const { tim } = useTUIKitContext('useConversationUpdate');
   useEffect(() => {
-    const onConversationListUpdated = (event:TIM) => {
+    const onConversationListUpdated = (event:any) => {
       if (setConversationList) {
         setConversationList(event.data.filter(
           (item) => item.type !== TIM.TYPES.CONV_SYSTEM,

@@ -4,8 +4,8 @@ import React, {
   useContext,
   KeyboardEventHandler,
   MutableRefObject,
-  ClipboardEventHandler,
 } from 'react';
+import type { ICursorPos } from '../components/TUIMessageInput/hooks';
 import type { EmojiData } from '../components/TUIMessageInput/hooks/useEmojiPicker';
 import type { filesData } from '../components/TUIMessageInput/hooks/useUploadPicker';
 import type { MESSAGE_TYPE_NAME } from '../constants';
@@ -14,7 +14,6 @@ interface dispatchParams {
   type: string,
   value?: string,
 }
-
 export interface TUIMessageInputContextValue {
   text?: string,
   disabled?: boolean,
@@ -33,6 +32,7 @@ export interface TUIMessageInputContextValue {
   showNumber?: number,
   MoreIcon?: React.ReactElement,
   handlePasete?: (e:ClipboardEvent) => void,
+  setCursorPos?: (e:ICursorPos) => void,
 }
 
 export const TUIMessageInputContext = React.createContext<TUIMessageInputContextValue>(undefined);

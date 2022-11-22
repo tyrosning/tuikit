@@ -1,25 +1,19 @@
-import React, { PropsWithChildren, useContext, MutableRefObject } from 'react';
-import TIM from '../@types';
+import React, {
+  PropsWithChildren, useContext, MutableRefObject, RefObject,
+} from 'react';
+import { Conversation, Message } from 'tim-js-sdk';
 import { OperateMessageParams } from '../components/TUIChat/hooks/useHandleMessage';
 
-export interface IConversationValue {
-  conversationID?: string,
-  type?: string,
-  userProfile?: TIM,
-  groupProfile?: TIM,
-  [propName: string]: TIM,
-}
-
 export interface TUIChatStateContextValue {
-  conversation?: IConversationValue,
-  messageList?: Array<TIM>,
+  conversation?: Conversation,
+  messageList?: Array<Message>,
   nextReqMessageID?: string,
   isCompleted?: boolean,
   init?: boolean,
   highlightedMessageId?: string,
   lastMessageID?:string,
   isSameLastMessageID?: boolean,
-  messageListRef?: TIM,
+  messageListRef?: RefObject<HTMLDivElement>,
   textareaRef?: MutableRefObject<HTMLTextAreaElement | undefined>,
   operateData?: OperateMessageParams,
   noMore?: boolean,

@@ -1,7 +1,7 @@
 import type { Reducer } from 'react';
+import { Conversation, Message } from 'tim-js-sdk';
 import { CONSTANT_DISPATCH_TYPE } from '../../constants';
-import type { IConversationValue, TUIChatStateContextValue } from '../../context';
-import type { IMessage } from '../TUIMessage';
+import type { TUIChatStateContextValue } from '../../context';
 import { OperateMessageParams } from './hooks/useHandleMessage';
 import {
   handleMessage,
@@ -13,29 +13,29 @@ import {
 export type ChatStateReducerAction =
   | {
       type: CONSTANT_DISPATCH_TYPE.SET_CONVERSATION_PRPFILE;
-      value?: IConversationValue
+      value?: Conversation
     }
   | {
       type: CONSTANT_DISPATCH_TYPE.SET_MESSAGELIST,
-      value?: Array<IMessage>,
+      value?: Array<Message>,
     }
   | {
       type: CONSTANT_DISPATCH_TYPE.SET_UPDATE_MESSAGE,
-      value?: Array<IMessage>,
+      value?: Array<Message>,
       index?: number
     }
   | {
     type: CONSTANT_DISPATCH_TYPE.SET_EDIT_MESSAGE,
-    value?: IMessage,
+    value?: Message,
     index?: number,
   }
   | {
     type: CONSTANT_DISPATCH_TYPE.SET_REMOVE_MESSAGE,
-    value?: IMessage
+    value?: Message
   }
   | {
       type: CONSTANT_DISPATCH_TYPE.SET_HISTORY_MESSAGELIST,
-      value?: Array<IMessage>,
+      value?: Array<Message>,
     }
   | {
       type: CONSTANT_DISPATCH_TYPE.SET_NEXT_REQ_MESSAGE_ID,
@@ -116,7 +116,7 @@ export const chatReducer = (
 };
 
 export const initialState:TUIChatStateContextValue = {
-  conversation: {},
+  conversation: {} as Conversation,
   messageList: [],
   nextReqMessageID: '',
   isCompleted: false,

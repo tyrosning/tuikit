@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import TIM from '../../@types/index';
+import TIM from 'tim-js-sdk';
 import type { TUIMessageProps } from './TUIMessage';
 
 import { MessageBubble } from './MessageBubble';

@@ -4,7 +4,6 @@ import {
 } from 'react';
 import { MESSAGE_TYPE_NAME } from '../../../constants';
 import { useTUIChatActionContext } from '../../../context';
-import { IMessage } from '../../TUIMessage';
 import type { IbaseStateProps } from './useMessageInputState';
 
 export interface filesData {
@@ -26,7 +25,7 @@ export function useUploadPicker<T extends IbaseStateProps>(props:PropsWithChildr
   };
 
   const sendUploadMessage = useCallback((file: filesData, type:MESSAGE_TYPE_NAME) => {
-    const message:IMessage = creatUploadMessage[type]({
+    const message = creatUploadMessage[type]({
       payload: file,
       onProgress(num:number) {
         message.progress = num;

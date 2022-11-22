@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState, useEffect } from 'react';
-import TIM from '../../@types/index';
+import { Message } from 'tim-js-sdk';
 import {
   useTUIChatStateContext,
   useTUIChatActionContext,
@@ -15,7 +15,7 @@ import { EmptyStateIndicator as DefaultEmptyStateIndicator } from '../EmptyState
 import './styles/index.scss';
 
 interface MessageListProps extends InfiniteScrollProps {
-  messageList?: Array<TIM>,
+  messageList?: Array<Message>,
   highlightedMessageId?: string,
 }
 function TUIMessageListWithContext <T extends MessageListProps>(

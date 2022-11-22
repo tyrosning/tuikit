@@ -1,17 +1,17 @@
 import { useLayoutEffect } from 'react';
-import TIM from '../../../@types';
+import TIM, { Message } from 'tim-js-sdk';
 import { useTUIKitContext } from '../../../context';
 
 export function useMessageReceviedListener(
-  setMessageList:(event?: TIM) => void,
+  setMessageList:(event?: Array<Message>) => void,
   customHandler?: (
-    updateMessage: (event?: TIM) => void,
-    event: TIM,
+    updateMessage: (event?: Array<Message>) => void,
+    event: any,
   ) => void,
 ) {
   const { tim } = useTUIKitContext('useMessageReceviedListener');
   useLayoutEffect(() => {
-    const handleMessageRecevied = (event: TIM) => {
+    const handleMessageRecevied = (event: any) => {
       if (customHandler && typeof customHandler === 'function') {
         customHandler(setMessageList, event);
       } else {

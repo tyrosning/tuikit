@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react';
-import TIM from '../../@types';
-import type { IMessage } from './TUIMessage';
+import { Message } from 'tim-js-sdk';
+import { UnknowPorps } from '../../context';
 
 export interface MessageContextProps {
-  context?: TIM,
-  message?: IMessage,
+  context?: UnknowPorps,
+  message?: Message,
   className?: string,
 }
 
@@ -23,12 +23,12 @@ function MessageTextWithContext <T extends MessageContextProps>(
         {context.text.map((item, index) => {
           const key = message.ID + index;
           if (item.name === 'text') {
-            return <span className="text-box" key={item.text + key}>{item.text}</span>;
+            return item.text;
           }
           return <img className="text-img" key={item.src + key} src={item.src} alt="" />;
         })}
+        {children}
       </div>
-      {children}
     </div>
   );
 }

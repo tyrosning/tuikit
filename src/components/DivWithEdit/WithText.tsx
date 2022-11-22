@@ -1,13 +1,12 @@
 import React, {
   PropsWithChildren, useLayoutEffect, useRef, useState,
 } from 'react';
-import TIM from '../../@types';
 import { Icon, IconTypes } from '../Icon';
 
 export interface WithEditProps {
   value?: string,
   onChange?: (value:string) => void,
-  confirm?: (data?:TIM) => void,
+  confirm?: (data?:any) => void,
   className?: string,
   close?: () => void,
 }

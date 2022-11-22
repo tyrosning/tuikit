@@ -1,10 +1,10 @@
 import { useLayoutEffect, useState } from 'react';
-import TIM from '../../../@types';
+import TIM, { Message } from 'tim-js-sdk';
 import { useTUIChatStateContext, useTUIKitContext } from '../../../context';
 import { JSONStringToParse } from '../../untils';
 
 interface messageContextParams {
-  message?: TIM,
+  message?: Message,
 }
 
 const replyType = {
@@ -33,7 +33,7 @@ export const useMessageReply = <T extends messageContextParams>(params:T) => {
     handleMessageReply(message);
   }, [message]);
 
-  const handleMessageReply = (data:TIM) => {
+  const handleMessageReply = (data:Message) => {
     if (!data?.cloudCustomData) {
       return;
     }

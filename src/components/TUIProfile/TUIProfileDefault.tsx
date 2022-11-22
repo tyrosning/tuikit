@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react';
 import DatePicker from 'react-date-picker';
+import TIM, { Profile } from 'tim-js-sdk';
 
-import TIM from '../../@types/index';
 import { useTUIKitContext } from '../../context';
 
 import { Avatar } from '../Avatar';
@@ -37,7 +37,7 @@ const genderList = [
 ];
 
 export interface TUIProfileDefaultProps {
-  userInfo?: TIM,
+  userInfo?: Profile,
   update?:(option:ProfileParams) => void,
   className?: string,
 }
@@ -83,7 +83,10 @@ function TUIProfileDefaultWithContext <T extends TUIProfileDefaultProps>(
     },
     {
       name: 'Gender',
-      value: gender[userInfo?.gender],
+      value: gender[userInfo?.gender]?.replace(
+        gender[userInfo?.gender][0],
+        gender[userInfo?.gender][0]?.toLocaleUpperCase(),
+      ),
       type: 'select',
       children: (
         <ul className="select-list">
@@ -138,7 +141,7 @@ function TUIProfileDefaultWithContext <T extends TUIProfileDefaultProps>(
   };
 
   // edit nick / selfSignature
-  const editText = (data?:TIM) => {
+  const editText = (data?:any) => {
     let key = '';
     switch (data?.name) {
       case 'nick':

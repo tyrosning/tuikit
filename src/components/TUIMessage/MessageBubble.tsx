@@ -3,18 +3,17 @@ import React, {
   ReactNode,
   useState,
 } from 'react';
-import TIM from '../../@types';
+import TIM, { Message } from 'tim-js-sdk';
 import { MESSAGE_STATUS } from '../../constants';
 import { Icon, IconTypes } from '../Icon';
 import { useMessageReply } from './hooks/useMessageReply';
-import type { IMessage } from './TUIMessage';
 
 export interface MessageBubbleProps {
-  message?: IMessage,
+  message?: Message,
   className?: string,
   children?: ReactNode,
-  Context?: React.ComponentType<TIM>,
-  Plugins?: React.ComponentType<TIM>,
+  Context?: React.ComponentType<any>,
+  Plugins?: React.ComponentType<any>,
 }
 
 function MessageBubbleWithContext <T extends MessageBubbleProps>(

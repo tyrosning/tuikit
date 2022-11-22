@@ -1,12 +1,11 @@
 import React, { PropsWithChildren, useMemo } from 'react';
-import TIM from '../../@types';
 import { TUIConversationProvider, TUIConversationContextValue } from '../../context/TUIConversationContext';
 import { TUIConversationList } from '../TUIConversationList';
 import { TUIProfile } from '../TUIProfile';
 
 interface TUIConversationProps {
-  createConversation?:(conversationID:string) => Promise<TIM>,
-  deleteConversation?:(conversationID:string) => Promise<TIM>,
+  createConversation?:(conversationID:string) => Promise<any>,
+  deleteConversation?:(conversationID:string) => Promise<any>,
 }
 
 export function UnMemoizedTUIConversation<T extends TUIConversationProps>(

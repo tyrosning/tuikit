@@ -1,11 +1,11 @@
 import React from 'react';
-import { Avatar } from '../Avatar';
+import { Profile } from 'tim-js-sdk';
+import { Avatar, defaultUserAvatar } from '../Avatar';
 import './styles/conversationCreateSelectView.scss';
-import type TIM from '../../@types';
 import { Icon, IconTypes } from '../Icon';
 
 interface ValueProps {
-  profile: {[key:string]: TIM},
+  profile: Profile,
   domList: Array<HTMLInputElement>,
 }
 export interface ConversationCreateSelectViewProps{
@@ -35,7 +35,7 @@ export function ConversationCreateSelectView(props:ConversationCreateSelectViewP
                 className="select-view-info-close"
                 onClick={() => { close(domList, index); }}
               />
-              <Avatar image={avatar} size={40} />
+              <Avatar image={avatar || defaultUserAvatar} size={40} />
               <div className="select-view-info-nick">{nick || userID}</div>
             </div>
           );

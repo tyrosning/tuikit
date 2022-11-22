@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, ReactEventHandler } from 'react';
-import TIM from '../../@types/index';
-import { useComponentContext } from '../../context';
+import { Message } from 'tim-js-sdk';
+
+import { UnknowPorps, useComponentContext } from '../../context';
 
 import { TUIMessageContextProvider } from '../../context/TUIMessageContext';
 import { useMessageHandler } from './hooks';
@@ -10,35 +11,22 @@ import { TUIMessageDefault } from './TUIMessageDefault';
 import { MessagePlugins as MessagePluginsDefault } from './MessagePlugins';
 import { MessageContext as MessageContextDefault } from './MessageContext';
 
-export interface IMessage {
-  ID: string,
-  type: string,
-  payload: TIM,
-  conversationType: string,
-  flow: string,
-  time: number,
-  status: string,
-  nick?: string,
-  avatar?: string,
-  [propName: string]: TIM;
-}
-
 export interface TUIMessageProps {
-  message: IMessage,
+  message: Message,
   className?: string,
   TUIMessage?: React.ComponentType,
-  MessageContext?: React.ComponentType,
-  MessagePlugins?: React.ComponentType,
+  MessageContext?: React.ComponentType<UnknowPorps>,
+  MessagePlugins?: React.ComponentType<UnknowPorps>,
   handleDelete?: ReactEventHandler,
-  CustemElement?: React.ComponentType<{message: IMessage}>,
-  TextElement?: React.ComponentType<{message: IMessage}>,
-  ImageElement?: React.ComponentType<{message: IMessage}>,
-  VideoElement?: React.ComponentType<{message: IMessage}>,
-  AudioElement?: React.ComponentType<{message: IMessage}>,
-  FileElement?: React.ComponentType<{message: IMessage}>,
-  MergerElement?: React.ComponentType<{message: IMessage}>,
-  LocationElement?: React.ComponentType<{message: IMessage}>,
-  FaceElement?: React.ComponentType<{message: IMessage}>,
+  CustemElement?: React.ComponentType<{message: Message}>,
+  TextElement?: React.ComponentType<{message: Message}>,
+  ImageElement?: React.ComponentType<{message: Message}>,
+  VideoElement?: React.ComponentType<{message: Message}>,
+  AudioElement?: React.ComponentType<{message: Message}>,
+  FileElement?: React.ComponentType<{message: Message}>,
+  MergerElement?: React.ComponentType<{message: Message}>,
+  LocationElement?: React.ComponentType<{message: Message}>,
+  FaceElement?: React.ComponentType<{message: Message}>,
 }
 function TUIMessageWithContext <T extends TUIMessageProps>(
   props: PropsWithChildren<T>,

@@ -1,22 +1,19 @@
 import { Dispatch, useCallback } from 'react';
-import TIM from '../../../@types';
+import { ChatSDK, Conversation, Message } from 'tim-js-sdk';
 import { CONSTANT_DISPATCH_TYPE } from '../../../constants';
-import type { IConversationValue, TUIChatStateContextValue } from '../../../context';
-import { IMessage } from '../../TUIMessage';
+import type { TUIChatStateContextValue } from '../../../context';
 import type { ChatStateReducerAction } from '../TUIChatState';
 
 export interface CreateMessageProps {
-  tim?: TIM,
-  conversation?: IConversationValue,
+  tim?: ChatSDK,
+  conversation?: Conversation,
   state?: TUIChatStateContextValue,
   dispatch?: Dispatch<ChatStateReducerAction>,
 }
-export interface BasicMessageListProps {
-  [propName: string]: TIM,
-}
 
-export interface GetMessageListProps extends BasicMessageListProps{
+export interface GetMessageListProps{
   nextReqMessageID?: string,
+  count?: number,
 }
 
 export function useHandleMessageList<T extends CreateMessageProps>(props:T) {
@@ -41,7 +38,7 @@ export function useHandleMessageList<T extends CreateMessageProps>(props:T) {
     });
   }, [tim]);
 
-  const updateMessage = useCallback((messageList: Array<IMessage>) => {
+  const updateMessage = useCallback((messageList: Array<Message>) => {
     dispatch({
       type: CONSTANT_DISPATCH_TYPE.SET_UPDATE_MESSAGE,
       value: messageList.filter((item) => (
@@ -50,14 +47,14 @@ export function useHandleMessageList<T extends CreateMessageProps>(props:T) {
     });
   }, [dispatch]);
 
-  const removeMessage = useCallback((message: IMessage) => {
+  const removeMessage = useCallback((message: Message) => {
     dispatch({
       type: CONSTANT_DISPATCH_TYPE.SET_REMOVE_MESSAGE,
       value: message,
     });
   }, [dispatch]);
 
-  const editLocalmessage = useCallback((message: IMessage) => {
+  const editLocalmessage = useCallback((message: Message) => {
     dispatch({
       type: CONSTANT_DISPATCH_TYPE.SET_EDIT_MESSAGE,
       value: message,

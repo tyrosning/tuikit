@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/conversationGroupTypeInfo.scss';
+import TIM from 'tim-js-sdk';
 import { PageStateTypes } from './ConversationCreate';
-import TIM from '../../@types';
 import { Icon, IconTypes } from '../Icon';
 
 export enum GroupType {

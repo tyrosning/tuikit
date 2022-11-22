@@ -1,6 +1,7 @@
 import React, {
   PropsWithChildren, useCallback, useEffect, useState,
 } from 'react';
+import { Conversation, Message } from 'tim-js-sdk';
 import { useTUIChatActionContext } from '../../context';
 import './styles/index.scss';
 import { Model } from '../Model';
@@ -9,14 +10,12 @@ import { Input } from '../Input';
 import { Checkbox } from '../Checkbox';
 import { Avatar } from '../Avatar';
 import { getDisplayImage, getDisplayTitle } from '../ConversationPreview/utils';
-import TIM from '../../@types';
 import { MESSAGE_OPERATE } from '../../constants';
 import { useHandleForwardMessage } from './hooks';
-import { IMessage } from './TUIMessageInput';
 
 interface HandleForwardParams {
-  list?:Array<TIM>,
-  message?:IMessage,
+  list?:Array<Conversation>,
+  message?:Message,
 }
 
 interface TUIForwardToProps {
@@ -105,7 +104,7 @@ export function TUIForward <T extends TUIForwardToProps>(
             height={16}
             onClick={handleClose}
           />
-          <h2 className="tui-forward-title">ForWard TO</h2>
+          <h2 className="tui-forward-title">Forward To</h2>
         </header>
         <div className="tui-forward-search">
           <Input

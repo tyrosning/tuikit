@@ -1,7 +1,6 @@
 import React, {
-  PropsWithChildren, useCallback, useLayoutEffect, useRef, useState,
+  PropsWithChildren, useLayoutEffect, useRef, useState,
 } from 'react';
-import TIM from '../../@types';
 import { Icon, IconTypes } from '../Icon';
 import { Popup } from '../Popup';
 
@@ -17,7 +16,7 @@ const elements = {
 interface DivWithEditProps {
   name?: string,
   value?: string,
-  confirm?: (data?:TIM) => void,
+  confirm?: (data?:any) => void,
   className?: string,
   classEditName?: string,
   type?: string,

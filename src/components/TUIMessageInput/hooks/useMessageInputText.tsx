@@ -5,11 +5,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import TIM from '../../../@types';
 import { CONSTANT_DISPATCH_TYPE, MESSAGE_OPERATE } from '../../../constants';
-import { useTUIChatActionContext, useTUIChatStateContext, useTUIKitContext } from '../../../context';
+import {
+  useTUIChatActionContext,
+  useTUIChatStateContext,
+  useTUIKitContext,
+} from '../../../context';
 import { useHandleQuoteMessage } from './useHandleQuoteMessage';
-import type { IbaseStateProps } from './useMessageInputState';
+import type { IbaseStateProps, ICursorPos } from './useMessageInputState';
 
 interface useMessageInputTextProps extends IbaseStateProps {
   focus?: boolean,
@@ -61,7 +64,7 @@ export const useMessageInputText = (props:useMessageInputTextProps) => {
     if (!state.text) {
       return;
     }
-    const options:TIM = {
+    const options:any = {
       payload: {
         text: state.text,
       },
@@ -126,11 +129,18 @@ export const useMessageInputText = (props:useMessageInputTextProps) => {
     (textToInsert: string) => {
       dispatch({
         type: CONSTANT_DISPATCH_TYPE.SET_TEXT,
-        getNewText: (text:string) => `${text}${textToInsert}`,
+        getNewText: (text:string) => `${text.slice(0, state.cursorPos.start)}${textToInsert}${text.slice(state.cursorPos.start)}`,
+      });
+      dispatch({
+        type: CONSTANT_DISPATCH_TYPE.SET_CURSOR_POS,
+        value: {
+          start: state.cursorPos.start + textToInsert.length,
+          end: state.cursorPos.end + textToInsert.length,
+        },
       });
       textareaRef?.current?.focus();
     },
-    [textareaRef],
+    [textareaRef, state],
   );
 
   const setText = useCallback(
@@ -144,6 +154,16 @@ export const useMessageInputText = (props:useMessageInputTextProps) => {
     [textareaRef],
   );
 
+  const setCursorPos = useCallback(
+    (cursorPos: ICursorPos) => {
+      dispatch({
+        type: CONSTANT_DISPATCH_TYPE.SET_CURSOR_POS,
+        value: cursorPos,
+      });
+    },
+    [textareaRef],
+  );
+
   return {
     handleChange,
     handleSubmit,
@@ -151,5 +171,6 @@ export const useMessageInputText = (props:useMessageInputTextProps) => {
     handlePasete,
     insertText,
     setText,
+    setCursorPos,
   };
 };

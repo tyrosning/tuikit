@@ -1,17 +1,16 @@
 import React, { useMemo, useState } from 'react';
 import './styles/index.scss';
+import { Conversation } from 'tim-js-sdk';
 import { Icon, IconTypes } from '../Icon';
-import type TIM from '../../@types';
 import { ConversationCreateUserSelectList } from './ConversationCreateUserSelectList';
 import { ConversationCreatGroupDetail } from './ConversationCreatGroupDetail';
-import { useConversationCreate } from './hooks/useConversationCreate';
 import { useTUIKitContext } from '../../context';
 import { useConversation } from '../../hooks';
 
 export interface ConversationCreateProps {
   className?: string,
   setConversationCreated: React.Dispatch<React.SetStateAction<boolean>>,
-  conversationList?: Array<TIM>
+  conversationList?: Array<Conversation>
 }
 export enum PageStateTypes {
   USER_SELECT='Next',

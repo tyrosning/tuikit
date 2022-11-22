@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import TIM from '../../../@types';
+import { ChatSDK } from 'tim-js-sdk';
 import { TUIChatStateContextValue } from '../../../context';
 
 interface CreateTUIChatStateContextProp extends TUIChatStateContextValue {
-  tim?: TIM,
+  tim?: ChatSDK,
 }
 
 function useCreateTUIChatStateContext(props:CreateTUIChatStateContextProp) {

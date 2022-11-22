@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import TIM from '../../@types/index';
+import { ChatSDK } from 'tim-js-sdk';
 import { useTUIKit } from './hooks/useTUIKit';
 import { useCreateTUIKitContext } from './hooks/useCreateTUIKitContext';
 import { TUIKitProvider } from '../../context/TUIKitContext';
@@ -9,7 +9,7 @@ import { TUIChat } from '../TUIChat';
 import { TUIManage } from '../TUIManage';
 
 export interface ChatProps {
-    tim: TIM,
+    tim?: ChatSDK | null,
     customClasses?: unknown
 }
 export function TUIKit<
@@ -18,7 +18,7 @@ export function TUIKit<
   props:PropsWithChildren<T>,
 ):React.ReactElement {
   const { children, tim, customClasses } = props;
-  (window as TIM).tencent_cloud_im_csig_react_uikit_23F_xa = true;
+  (window as any).tencent_cloud_im_csig_react_uikit_23F_xa = true;
   const {
     conversation,
     setActiveConversation,

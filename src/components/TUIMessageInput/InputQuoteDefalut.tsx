@@ -1,14 +1,14 @@
 import React, { PropsWithChildren, useCallback } from 'react';
 import './styles/index.scss';
 
+import { Message } from 'tim-js-sdk';
 import { useTUIChatActionContext } from '../../context';
 import { Icon, IconTypes } from '../Icon';
-import { IMessage } from './TUIMessageInput';
 import { MESSAGE_OPERATE } from '../../constants';
 import { useHandleQuoteMessage } from './hooks/useHandleQuoteMessage';
 
 interface InputQuoteProps {
-  message?: IMessage
+  message?: Message
 }
 
 export function InputQuoteDefalut <T extends InputQuoteProps>(

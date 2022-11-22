@@ -41,6 +41,7 @@ export enum CONSTANT_DISPATCH_TYPE {
   SET_HIGH_LIGHTED_MESSAGE_ID ='setHightLightedMessageID',
   OPERATE_MESSAGE = 'operateMessage',
   SET_NO_MORE = 'setNoMore',
+  SET_CURSOR_POS = 'setCursorPos',
 }
 
 export enum MESSAGE_TYPE {

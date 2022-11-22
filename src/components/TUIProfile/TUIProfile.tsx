@@ -1,14 +1,13 @@
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import './styles/index.scss';
-import TIM from '../../@types';
 import { useMyProfile } from './hooks';
 import { TUIProfileDefault } from './TUIProfileDefault';
 import { useTUIKitContext } from '../../context';
 
 interface TUIProfileProps {
   className?: string,
-  TUIProfile?: React.ComponentType<TIM>,
+  TUIProfile?: React.ComponentType<any>,
 }
 
 function UnMemoizedTUIProfile<T extends TUIProfileProps>(

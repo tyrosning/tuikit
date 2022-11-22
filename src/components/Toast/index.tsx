@@ -1,5 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import TIM from '../../@types';
+import React from 'react';
 
 import './styles/index.scss';
 

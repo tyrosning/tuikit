@@ -1,10 +1,9 @@
-import TIM from '../../@types';
+import TIM, { Message } from 'tim-js-sdk';
 import constant from '../../constants';
 import type { TUIChatStateContextValue } from '../../context';
-import type { IMessage } from '../TUIMessage';
 import { JSONStringToParse } from '../untils';
 
-export const handleMessage = (messageList:Array<IMessage>):Array<IMessage> => {
+export const handleMessage = (messageList:Array<Message>):Array<Message> => {
   let customPayloadData = null;
   return messageList.filter((item) => {
     if (item.type === TIM.TYPES.MSG_CUSTOM) {
@@ -18,10 +17,10 @@ export const handleMessage = (messageList:Array<IMessage>):Array<IMessage> => {
 };
 
 export const handleMessageList = (
-  list:Array<IMessage>,
+  list:Array<Message>,
   state:TUIChatStateContextValue,
 ) => {
-  const data:TIM = {
+  const data = {
     messageList: [],
     lastMessageID: '',
     isSameLastMessageID: false,
@@ -36,21 +35,21 @@ export const handleMessageList = (
 };
 
 export const handleEditMessage = (
-  messageList: Array<IMessage>,
-  message: IMessage,
+  messageList: Array<Message>,
+  message: Message,
 ) => {
   const list = [...messageList];
-  const index = list.findIndex((item:IMessage) => item?.ID === message?.ID);
+  const index = list.findIndex((item) => item?.ID === message?.ID);
   list[index] = message;
   return list;
 };
 
 export const handleRemoveMessage = (
-  messageList: Array<IMessage>,
-  message: IMessage,
+  messageList: Array<Message>,
+  message: Message,
 ) => {
   const list = [...messageList];
-  const index = list.findIndex((item:IMessage) => item?.ID === message?.ID);
+  const index = list.findIndex((item) => item?.ID === message?.ID);
   list.splice(index, 1);
   return list;
 };

@@ -11,23 +11,39 @@ export interface IbaseStateProps {
 }
 
 export interface IinitState {
-  text: string,
+  text?: string,
+  cursorPos?: ICursorPos,
+}
+
+export interface ICursorPos {
+  start?: number,
+  end?: number,
 }
 
 export type MessageInputReducerAction =
-  | SetTextType
+  | {
+    type: CONSTANT_DISPATCH_TYPE.SET_TEXT;
+    getNewText: (text: string) => void,
+  }
+  | {
+    type: CONSTANT_DISPATCH_TYPE.SET_CURSOR_POS;
+    value: ICursorPos
+  }
 
-type SetTextType = {
-  type: CONSTANT_DISPATCH_TYPE.SET_TEXT;
-  getNewText: (text: string) => void
+const initState:IinitState = {
+  text: '',
+  cursorPos: {
+    start: 0,
+    end: 0,
+  },
 };
-
-const initState:IinitState = { text: '' };
 
 const reducer = (state:IinitState, action) => {
   switch (action.type) {
     case CONSTANT_DISPATCH_TYPE.SET_TEXT:
       return { ...state, text: action?.getNewText(state.text) };
+    case CONSTANT_DISPATCH_TYPE.SET_CURSOR_POS:
+      return { ...state, cursorPos: action?.value };
     default: return state;
   }
 };
@@ -42,6 +58,7 @@ export const useMessageInputState = (props:TUIMessageInputProps) => {
     handlePasete,
     insertText,
     setText,
+    setCursorPos,
   } = useMessageInputText({
     state,
     dispatch,
@@ -79,5 +96,6 @@ export const useMessageInputState = (props:TUIMessageInputProps) => {
     insertText,
     setText,
     focus,
+    setCursorPos,
   };
 };

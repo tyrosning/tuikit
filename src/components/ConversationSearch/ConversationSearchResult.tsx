@@ -1,5 +1,5 @@
 import React from 'react';
-import TIM from '../../@types/index';
+import { Conversation } from 'tim-js-sdk';
 import {
   ConversationPreview,
   ConversationPreviewUIComponentProps,
@@ -7,7 +7,7 @@ import {
 import { Icon, IconTypes } from '../Icon';
 
 export interface ConversationSearchResultProps {
-  result: Array<TIM>
+  result: Array<Conversation>
   searchValue?: string,
   Preview?: React.ComponentType<ConversationPreviewUIComponentProps>
 }
@@ -21,7 +21,7 @@ export function ConversationSearchResult(props:ConversationSearchResultProps):Re
           <span className="no-result-message">{`No results for "${searchValue}"`}</span>
         </div>
       )
-        : result.map((item: TIM) => {
+        : result.map((item) => {
           const previewProps = {
             conversation: item,
             Preview,

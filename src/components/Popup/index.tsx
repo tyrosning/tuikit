@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import TIM from '../../@types';
 
 import './styles/index.scss';
 
@@ -7,8 +6,8 @@ interface PopupProps {
   className?: string,
   show?: boolean,
   close?: (e) => void,
-  root?: TIM,
-  handleVisible?: (isVisible:TIM) => void,
+  root?: any,
+  handleVisible?: (isVisible:any) => void,
 }
 
 export function Popup<
@@ -43,10 +42,10 @@ T extends PopupProps
 
   useLayoutEffect(() => {
     const io = new IntersectionObserver(([change]) => {
-      const { boundingClientRect, rootBounds } = change;
-      if (handleVisible) {
+      const { boundingClientRect, rootBounds, intersectionRatio } = change;
+      if (handleVisible && intersectionRatio < 1) {
         handleVisible({
-          left: boundingClientRect.x < rootBounds.width,
+          left: (boundingClientRect.left - boundingClientRect.width) < rootBounds.left,
           top: (boundingClientRect.bottom + boundingClientRect.height) < rootBounds.bottom,
         });
       }

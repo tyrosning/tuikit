@@ -1,6 +1,6 @@
 {
-  "name": "@tencentcloud/chat-uikit-react",
-  "version": "1.0.16",
+  "name": "@tyrosking/chat-uikit-react",
+  "version": "1.0.4",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "license": "MIT",
@@ -16,6 +16,10 @@
     "build": "yarn clean && yarn run rollup -c",
     "start": "yarn run rollup -c -w",
     "clean": "rimraf ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TencentCloud/chat-uikit-react.git"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
@@ -53,14 +57,14 @@
   "dependencies": {
     "date-fns": "^2.29.3",
     "react-date-picker": "^9.0.0",
-    "tim-js-sdk": "^2.23.0",
+    "tim-js-sdk": "^2.24.2",
     "tim-upload-plugin": "^1.0.5"
   },
   "peerDependencies": {
-    "tslib": "^2.4.1",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
-    "tim-js-sdk": "^2.23.0",
-    "tim-upload-plugin": "^1.0.5"
+    "tim-js-sdk": "^2.24.2",
+    "tim-upload-plugin": "^1.0.5",
+    "tslib": "^2.4.1"
   }
 }

@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, useContext } from 'react';
-import TIM from '../@types';
-import { IMessage } from '../components';
+import { Message } from 'tim-js-sdk';
 import type {
   CreateFaceMessageProps,
   CreateForwardMessageProps,
@@ -10,19 +9,19 @@ import type {
 import { OperateMessageParams } from '../components/TUIChat/hooks/useHandleMessage';
 
 export interface TUIChatActionContextValue {
-  sendMessage?: (message: IMessage) => Promise<void>,
-  removeMessage?: (message: IMessage) => void,
-  updateMessage?: (messages: Array<IMessage>) => void,
-  createTextMessage?: (options: CreateTextMessageProps) => IMessage,
-  createFaceMessage?: (options: CreateFaceMessageProps) => IMessage,
-  createImageMessage?: (options: CreateUploadMessageProps) => IMessage,
-  createVideoMessage?: (options: CreateUploadMessageProps) => IMessage,
-  createFileMessage?: (options: CreateUploadMessageProps) => IMessage,
-  createForwardMessage?: (options: CreateForwardMessageProps) => IMessage,
-  editLocalmessage?: (message: IMessage) => void,
+  sendMessage?: (message: Message) => Promise<void>,
+  removeMessage?: (message: Message) => void,
+  updateMessage?: (messages: Array<Message>) => void,
+  createTextMessage?: (options: CreateTextMessageProps) => Message,
+  createFaceMessage?: (options: CreateFaceMessageProps) => Message,
+  createImageMessage?: (options: CreateUploadMessageProps) => Message,
+  createVideoMessage?: (options: CreateUploadMessageProps) => Message,
+  createFileMessage?: (options: CreateUploadMessageProps) => Message,
+  createForwardMessage?: (options: CreateForwardMessageProps) => Message,
+  editLocalmessage?: (message: Message) => void,
   operateMessage?: (data?: OperateMessageParams) => void,
   loadMore?: () => Promise<void>,
-  revokeMessage?: (message:IMessage) => Promise<TIM>,
+  revokeMessage?: (message:Message) => Promise<Message>,
 }
 
 export const TUIChatActionContext = React.createContext<
